@@ -1,0 +1,32 @@
+.AxisIcon {
+  animation: App-logo-spin infinite 1s linear;
+  height: 20px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.AxisTitle {
+  font-size: 0.5em;
+  padding: 0px;
+  margin: 0px;
+}
+
+.Axis {
+  background-color: #224488;
+  border: 1px white solid;
+  padding: 2px;
+  margin: 2px;
+  height: 40px;
+  width: 200px;
+}
+
+.Axis:hover {
+  background-color: #335599;
+  border: 2px white solid;
+}
+
+.Position{
+  text-align: center;
+  color: white;
+  font-size: 0.5em;
+}
