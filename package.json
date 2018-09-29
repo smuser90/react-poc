@@ -6,7 +6,9 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-flexbox-grid": "^2.1.2",
-    "react-scripts": "1.1.5"
+    "react-rangeslider": "^2.2.0",
+    "react-scripts": "1.1.5",
+    "vivid-icons": "^1.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

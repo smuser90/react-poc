@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 import './App.css'
 import Axis from './Axis'
 
-import { Grid } from 'react-flexbox-grid';
-import DeviceRow from './DeviceRow';
-import DeviceColumn from './DeviceColumn';
-
 const FRAME_RATE = 1;
 const FRAME_TIME = 1000 / FRAME_RATE;
+
+const AXIS_COUNT = 250;
+
+var axisPosition = 0;
+var axisLimit = 1000;
 
 class App extends Component {
 
@@ -17,51 +18,60 @@ class App extends Component {
 
     this.rows = [];
     this.axes = [];
-    this.axisPositions = [];
+    this.axisState = 'ready';
+    this.axisPosition = 0;
 
-    var axisNum = 0;
-    for (var row = 0; row < 50; row++) {
-        var column = [];
-
-        for(var col = 0; col < 5; col++){
-          this.axisPositions.push(parseInt(1000 *Math.random()));
-
-          var axis = <Axis index={axisNum} position={this.axisPositions[axisNum]} key={Math.random()}/>
-          this.axes.push(axis);
-          column.push(<DeviceColumn axes={axis} key={Math.random()}/>)
-          axisNum++;
-        }
-
-        this.rows.push(<DeviceRow column={column} key={Math.random()}></DeviceRow>)
-    }
+    for(var axis = 0; axis < AXIS_COUNT; axis++)
+      this.axes.push(<Axis index={axis} position={this.axisPosition} axisState={this.axisState} key={Math.random()}/>)
 
     setTimeout(function() {
-      setInterval(function() { this.updateAxesState(); }.bind(this), 1000);
-    }.bind(this), 16);
+      this.updateAxesState();
+    }.bind(this), 1000);
   }
 
   updateAxesState(){
-    for(var index in this.axisPositions){
-      this.axisPositions[index] = Math.random();
+    // schedule the next frame
+    setTimeout(function() { this.updateAxesState(); }.bind(this), 16);
+
+    if(this.axisPosition == 0)
+      this.axisState = "ready"
+
+    if(this.axisPosition == 200)
+      this.axisState = "moving"
+
+    if(this.axisPosition == 400)
+      this.axisState = "warning"
+
+    if(this.axisPosition == 600)
+      this.axisState = "estop"
+
+    if(this.axisPosition == 800)
+      this.axisState = "disabled"
+
+    for(var axis in this.axes){
+      this.axes[axis] = React.cloneElement(this.axes[axis], {
+        position: this.axisPosition,
+        axisState: this.axisState,
+      })
     }
 
+    this.axisPosition++;
+    if(this.axisPosition > axisLimit) this.axisPosition = 0;
+
+
+
+    // Redraw
     this.forceUpdate();
-
-    console.log(Date.now() + ": Tick");
-
   }
 
   render() {
-
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">iQ Rendering Stress Test</h1>
         </header>
         <div className="Center">
-          <Grid fluid>
-            {this.rows}
-          </Grid>
+          {this.axes}
         </div>
       </div>
     );

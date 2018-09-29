@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import './Axis.css'
-import logo from './logo.svg'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import gear from './gear.svg'
+
+
 
 class Axis extends Component {
   constructor(props){
     super(props)
-    this.index = props.index;
-    this.name = "Axis " + this.index;
+    this.name = "Axis " + props.index;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -17,23 +18,16 @@ class Axis extends Component {
   render() {
 
     return (
-      <Grid className="Axis">
-        <Row>
-          <Col md={2}>
-            <img src={logo} className="AxisIcon" alt="logo" />
-          </Col>
-          <Col md={2}>
-            <h3 className="AxisTitle">{this.name}</h3>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={2}>
-            <div className="Position">
-              {this.props.position}
-            </div>
-          </Col>
-        </Row>
-      </Grid>
+      <div className="Axis" state={this.props.axisState}>
+      <div className="Grid">
+      <img src={gear} className="AxisIcon" alt="gear" />
+        <div className="Position">{this.props.position}.00 ft</div>
+        <h3 className="AxisTitle">{this.name}</h3>
+        <div className="stylie"><div className="dot"/></div>
+
+      </div>
+
+      </div>
     );
   }
 }

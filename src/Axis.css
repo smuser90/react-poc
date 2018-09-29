@@ -1,18 +1,19 @@
-.AxisIcon {
-  animation: App-logo-spin infinite 1s linear;
-  height: 20px;
+.Position {
+  font-size: 1em;
   padding: 0px;
   margin: 0px;
+  color: white;
 }
 
-.AxisTitle {
-  font-size: 0.5em;
-  padding: 0px;
-  margin: 0px;
+.Grid{
+  display: grid;
+  grid-template-columns: 100px 100px;
+  grid-gap: 4px;
 }
 
 .Axis {
-  background-color: #224488;
+  color: white;
+  background-color: green;
   border: 1px white solid;
   padding: 2px;
   margin: 2px;
@@ -20,13 +21,86 @@
   width: 200px;
 }
 
+.Axis[state=moving]{
+  background-color: blue;
+}
+
+.Axis[state=estop]{
+  background-color: red;
+}
+
+.Axis[state=warning]{
+  background-color: yellow;
+}
+
+.Axis[state=disabled]{
+  background-color: grey;
+}
+
 .Axis:hover {
   background-color: #335599;
   border: 2px white solid;
+  -webkit-filter: blur(2px);
 }
 
-.Position{
-  text-align: center;
-  color: white;
+.AxisTitle{
   font-size: 0.5em;
+  margin-left: -50px;
+  margin-top: -1px;
 }
+
+.AxisIcon{
+  height: 20px;
+  width: 20px;
+}
+
+.stylie{
+  margin-top: 5px;
+  height: 2px;
+  width: 70px;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: relative;
+  animation-name: stylie-transform-keyframes;
+  animation-duration: 4000ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: 0 0;
+}
+
+@keyframes stylie-transform-keyframes {
+  0% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
+  100% {transform:translate(70px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+}html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
+
+.loadBar{
+  height: 30px;
+  width: 2px;
+  background-color: white;
+  display: float;
+}
+
+.load {
+  position: relative;
+  animation-name: load-transform-keyframes;
+  animation-duration: 4000ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: 0 0;
+}
+
+@keyframes load-transform-keyframes {
+  0% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
+  100% {transform:translate(0px, 30px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+}html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
