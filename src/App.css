@@ -19,7 +19,7 @@
 
 .Center{
   display: grid;
-  grid-template-columns: 204px 204px 204px 204px 204px 204px;
+  grid-template-columns: 204px 204px 204px 204px 204px 204px 204px;
   grid-gap: 4px;
 }
 
