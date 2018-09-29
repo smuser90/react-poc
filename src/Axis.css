@@ -8,33 +8,40 @@
 .Grid{
   display: grid;
   grid-template-columns: 100px 100px;
-  grid-gap: 4px;
+  grid-gap: 2px;
 }
 
 .Axis {
-  color: white;
-  background-color: green;
-  border: 1px white solid;
-  padding: 2px;
-  margin: 2px;
+  padding: 0px;
+  margin: 4px;
   height: 40px;
   width: 200px;
 }
 
+.Axis[state=ready]{
+  color: #9B9B9B;
+  background-color: rgba(31, 34, 41, 1.0);
+  border: 2px white solid;
+}
+
 .Axis[state=moving]{
-  background-color: blue;
+  background-color: #335599;
+  border: 2px rgba(61, 142, 201, 1.0) solid;
 }
 
 .Axis[state=estop]{
-  background-color: red;
+  background-color: rgba(253, 97, 65, 0.4);
+  border: 2px rgba(253, 97, 65, 1.0) solid;
 }
 
 .Axis[state=warning]{
-  background-color: yellow;
+  background-color: rgba(210, 180, 0, 0.4);
+  border: 2px #FDD100 solid;
 }
 
 .Axis[state=disabled]{
   background-color: grey;
+  border: 2px white solid;
 }
 
 .Axis:hover {
@@ -67,40 +74,4 @@
   width: 10px;
   background-color: black;
   border-radius: 50%;
-  position: relative;
-  animation-name: stylie-transform-keyframes;
-  animation-duration: 4000ms;
-  animation-delay: 0ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  transform-origin: 0 0;
 }
-
-@keyframes stylie-transform-keyframes {
-  0% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
-  100% {transform:translate(70px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
-}html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
-
-.loadBar{
-  height: 30px;
-  width: 2px;
-  background-color: white;
-  display: float;
-}
-
-.load {
-  position: relative;
-  animation-name: load-transform-keyframes;
-  animation-duration: 4000ms;
-  animation-delay: 0ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  transform-origin: 0 0;
-}
-
-@keyframes load-transform-keyframes {
-  0% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
-  100% {transform:translate(0px, 30px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
-}html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }

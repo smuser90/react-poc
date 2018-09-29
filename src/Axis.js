@@ -17,13 +17,18 @@ class Axis extends Component {
 
   render() {
 
+    var dotStyle = {
+      marginLeft: (this.props.position / 1000) * 100 + "%",
+    }
+
+
     return (
       <div className="Axis" state={this.props.axisState}>
       <div className="Grid">
       <img src={gear} className="AxisIcon" alt="gear" />
         <div className="Position">{this.props.position}.00 ft</div>
         <h3 className="AxisTitle">{this.name}</h3>
-        <div className="stylie"><div className="dot"/></div>
+        <div className="stylie"><div className="dot" style={dotStyle}/></div>
 
       </div>
 

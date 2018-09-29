@@ -3,13 +3,9 @@ import React, { Component } from 'react'
 import './App.css'
 import Axis from './Axis'
 
-const FRAME_RATE = 1;
-const FRAME_TIME = 1000 / FRAME_RATE;
+const AXIS_COUNT = 100;
 
-const AXIS_COUNT = 250;
-
-var axisPosition = 0;
-var axisLimit = 1000;
+var AXIS_LIMIT = 1000;
 
 class App extends Component {
 
@@ -33,19 +29,19 @@ class App extends Component {
     // schedule the next frame
     setTimeout(function() { this.updateAxesState(); }.bind(this), 16);
 
-    if(this.axisPosition == 0)
+    if(this.axisPosition === 0)
       this.axisState = "ready"
 
-    if(this.axisPosition == 200)
+    if(this.axisPosition === 200)
       this.axisState = "moving"
 
-    if(this.axisPosition == 400)
+    if(this.axisPosition === 400)
       this.axisState = "warning"
 
-    if(this.axisPosition == 600)
+    if(this.axisPosition === 600)
       this.axisState = "estop"
 
-    if(this.axisPosition == 800)
+    if(this.axisPosition === 800)
       this.axisState = "disabled"
 
     for(var axis in this.axes){
@@ -56,7 +52,7 @@ class App extends Component {
     }
 
     this.axisPosition++;
-    if(this.axisPosition > axisLimit) this.axisPosition = 0;
+    if(this.axisPosition > AXIS_LIMIT) this.axisPosition = 0;
 
 
 
