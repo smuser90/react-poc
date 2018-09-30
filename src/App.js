@@ -34,14 +34,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        axes: this.state.axes.map(axis => ({
-          state: 'moving',
-          position: (axis.position + 1) % 1000
-        }))
-      })
-    }, 16)
+    requestAnimationFrame(this.advanceState.bind(this))
+  }
+
+  advanceState(){
+    var nextState;
+    if(this.state.axes[0]['position'] < 200)
+      nextState = 'ready';
+    else if(this.state.axes[0]['position'] < 400)
+      nextState = 'moving';
+    else if(this.state.axes[0]['position'] < 600)
+      nextState = 'warning';
+    else if(this.state.axes[0]['position'] < 700)
+      nextState = 'estop';
+    else if(this.state.axes[0]['position'] < 850)
+      nextState = 'disabled';
+
+    this.setState({
+      axes: this.state.axes.map(axis => ({
+        state: nextState,
+        position: (axis.position + 1) % 1000
+      }))
+    })
+    requestAnimationFrame(this.advanceState.bind(this))
   }
 
   render() {
