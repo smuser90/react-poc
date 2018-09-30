@@ -11,10 +11,6 @@ class Axis extends Component {
     this.name = "Axis " + props.index;
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({position: nextProps.position})
-  }
-
   render() {
 
     var dotStyle = {
@@ -23,7 +19,7 @@ class Axis extends Component {
 
 
     return (
-      <div className="Axis" state={this.props.axisState}>
+      <div className="Axis" state={this.props.state}>
       <div className="Grid">
       <img src={gear} className="AxisIcon" alt="gear" />
         <div className="stylie"><div className="dot" style={dotStyle}/></div>

@@ -60,7 +60,6 @@
 .Axis:hover {
   background-color: #335599;
   border: 2px white solid;
-  -webkit-filter: blur(2px);
 }
 
 .AxisTitle{
