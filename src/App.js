@@ -3,17 +3,8 @@ import React, { Component } from 'react'
 import './App.css'
 import Axis from './Axis'
 
-/*
-  100 Axes -> 60fps
-  150 Axes -> 60fps
-  200 Axes -> 50fps
-  250 Axes -> 30fps
-*/
-
 const AXIS_COUNT = 50
 const AXIS_LIMIT = 1000
-
-var tick = 0;
 
 function populateAxes() {
   let res = []
@@ -21,7 +12,9 @@ function populateAxes() {
     res.push({
       state: 'ready',
       position: 0,
-      index: i
+      index: i,
+      limit: AXIS_LIMIT,
+      load: 0
     })
   }
 
@@ -60,11 +53,11 @@ class App extends Component {
   advanceState(){
     var nextState = this.getNextAxisState();
 
-
     this.setState({
       axes: this.state.axes.map(axis => ({
         state: nextState,
-        position: (axis.position + 1) % 1000
+        position: (axis.position + 1) % AXIS_LIMIT,
+        load: parseFloat(axis.position/ 10 % 7, 10).toFixed(1)
       }))
     })
 
@@ -82,7 +75,13 @@ class App extends Component {
 
         <div className="Center">
           {axes.map((axis, i) => (
-            <Axis key={i} state={axis.state} position={axis.position} index={axis.index}/>
+            <Axis
+              key={i}
+              state={axis.state}
+              position={axis.position}
+              index={axis.index}
+              load={axis.load}
+            />
           ))}
         </div>
       </div>
