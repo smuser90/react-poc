@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import './Axis.css'
 
 import gear from './gear.svg'
 
 
 
-class Axis extends Component {
+class Axis extends PureComponent {
   constructor(props){
     super(props)
     this.name = "Axis " + props.index;

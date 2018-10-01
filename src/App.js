@@ -10,9 +10,10 @@ import Axis from './Axis'
   250 Axes -> 30fps
 */
 
-const AXIS_COUNT = 200
+const AXIS_COUNT = 50
+const AXIS_LIMIT = 1000
 
-var AXIS_LIMIT = 1000
+var tick = 0;
 
 function populateAxes() {
   let res = []
@@ -37,18 +38,28 @@ class App extends Component {
     requestAnimationFrame(this.advanceState.bind(this))
   }
 
-  advanceState(){
-    var nextState;
+  getNextAxisState(){
+    var res;
+
     if(this.state.axes[0]['position'] < 200)
-      nextState = 'ready';
+      res = 'ready';
     else if(this.state.axes[0]['position'] < 400)
-      nextState = 'moving';
+      res = 'moving';
     else if(this.state.axes[0]['position'] < 600)
-      nextState = 'warning';
+      res = 'warning';
     else if(this.state.axes[0]['position'] < 700)
-      nextState = 'estop';
+      res = 'estop';
     else if(this.state.axes[0]['position'] < 850)
-      nextState = 'disabled';
+      res = 'disabled';
+    else
+      res = 'moving';
+
+    return res;
+  }
+
+  advanceState(){
+    var nextState = this.getNextAxisState();
+
 
     this.setState({
       axes: this.state.axes.map(axis => ({
@@ -56,6 +67,7 @@ class App extends Component {
         position: (axis.position + 1) % 1000
       }))
     })
+
     requestAnimationFrame(this.advanceState.bind(this))
   }
 

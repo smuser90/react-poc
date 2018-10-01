@@ -8,6 +8,7 @@
     "react-flexbox-grid": "^2.1.2",
     "react-rangeslider": "^2.2.0",
     "react-scripts": "1.1.5",
+    "react-window": "^1.1.2",
     "vivid-icons": "^1.0.9"
   },
   "scripts": {
